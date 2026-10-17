@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # MySQL 8.0 Relational Database
+  mysql_db:
+    image: mysql:8.0
+    container_name: rcorp_mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: rcorp_support_db
+      MYSQL_USER: rcorp_user
+      MYSQL_PASSWORD: rcorp_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # Redis Cache & Background Tasks
+  redis:
+    image: redis:7-alpine
+    container_name: rcorp_redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  # Django REST Framework Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: rcorp_backend
+    restart: always
+    command: >
+      sh -c "python manage.py migrate &&
+             python seed_data.py &&
+             gunicorn r_corp_support.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+    environment:
+      DJANGO_DEBUG: "False"
+      DJANGO_SECRET_KEY: "rcorp-production-secure-key-928374928"
+      DATABASE_ENGINE: "mysql"
+      DB_NAME: "rcorp_support_db"
+      DB_USER: "rcorp_user"
+      DB_PASSWORD: "rcorp_password"
+      DB_HOST: "mysql_db"
+      DB_PORT: "3306"
+      OPENAI_API_KEY: "${OPENAI_API_KEY:-}"
+      OPENAI_MODEL: "gpt-4o-mini"
+    ports:
+      - "8000:8000"
+    depends_on:
+      mysql_db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  # React + Tailwind + Nginx Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: rcorp_frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
