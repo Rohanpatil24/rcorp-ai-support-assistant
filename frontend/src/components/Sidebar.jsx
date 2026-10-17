@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import {
@@ -8,11 +8,13 @@ import {
   Ticket,
   BookOpen,
   BarChart3,
-  LogOut,
   ChevronLeft,
   ChevronRight,
-  X
+  X,
+  Bot
 } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
+import { UserProfile } from './UserProfile';
 
 export const Sidebar = ({
   isCollapsed = false,
@@ -20,13 +22,7 @@ export const Sidebar = ({
   isMobileOpen = false,
   onCloseMobile,
 }) => {
-  const { user, role, isAdmin, logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate('/');
-  };
+  const { role, isAdmin } = useAuth();
 
   const navItems = [
     {
@@ -63,31 +59,32 @@ export const Sidebar = ({
 
   const filteredItems = navItems.filter((item) => item.roles.includes(role));
 
-  const roleLabels = {
-    customer: 'Customer',
-    support_agent: 'Support Agent',
-    admin: 'Administrator',
-    super_admin: 'Super Admin',
-  };
-
   const navContent = (
-    <div className="flex flex-col justify-between h-full p-4 space-y-6">
-      {/* Top Workspace Header */}
+    <div className="flex flex-col justify-between h-full p-4 space-y-6 overflow-y-auto no-scrollbar">
+      {/* Top Workspace Header & Logo */}
       <div className="space-y-4">
-        <div className={`p-2.5 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} transition-all`}>
+        <div
+          className={`p-2.5 rounded-2xl bg-slate-100/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 flex items-center ${
+            isCollapsed ? 'justify-center' : 'justify-between'
+          } transition-all`}
+        >
           <div className="flex items-center gap-2.5 min-w-0">
             <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 text-white flex items-center justify-center font-bold text-xs shadow-md shrink-0">
-              R
+              <Bot className="w-4 h-4" />
             </div>
             {!isCollapsed && (
               <div className="min-w-0 overflow-hidden">
-                <p className="text-xs font-bold text-white tracking-tight truncate">R Corp Workspace</p>
-                <p className="text-[10px] text-slate-400 font-mono truncate">Node 01 • Active</p>
+                <p className="text-xs font-bold text-slate-800 dark:text-white tracking-tight truncate">
+                  R Corporation
+                </p>
+                <p className="text-[10px] text-indigo-600 dark:text-indigo-400 font-mono truncate">
+                  AI Support Hub
+                </p>
               </div>
             )}
           </div>
           {!isCollapsed && (
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" title="System Online" />
           )}
         </div>
 
@@ -102,15 +99,17 @@ export const Sidebar = ({
                 onClick={onCloseMobile}
                 title={isCollapsed ? item.name : undefined}
                 className={({ isActive }) =>
-                  `flex items-center ${isCollapsed ? 'justify-center px-2 py-3' : 'justify-between px-3.5 py-2.5'} rounded-xl text-sm font-medium transition-all group relative ${
+                  `flex items-center ${
+                    isCollapsed ? 'justify-center px-2 py-3' : 'justify-between px-3.5 py-2.5'
+                  } rounded-xl text-sm font-medium transition-all group relative ${
                     isActive
-                      ? 'bg-gradient-to-r from-indigo-600/25 to-purple-600/20 text-white border border-indigo-500/35 shadow-md shadow-indigo-600/10'
-                      : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                      ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20 font-semibold'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60'
                   }`
                 }
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <Icon className="w-4 h-4 text-indigo-400 shrink-0 group-hover:scale-110 transition-transform" />
+                  <Icon className="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform" />
                   {!isCollapsed && <span className="truncate">{item.name}</span>}
                 </div>
                 {!isCollapsed && <ChevronRight className="w-3.5 h-3.5 opacity-30 shrink-0" />}
@@ -127,39 +126,19 @@ export const Sidebar = ({
         </nav>
       </div>
 
-      {/* Footer / User Profile & Collapse Toggle */}
-      <div className="space-y-3 pt-3 border-t border-slate-800/80">
-        {/* User Card */}
-        <div className={`p-2 rounded-xl bg-slate-900/60 border border-slate-800/80 flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} gap-2`}>
-          <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center text-white font-bold text-xs shrink-0 shadow">
-              {user?.fullname?.charAt(0).toUpperCase() || 'U'}
-            </div>
-            {!isCollapsed && (
-              <div className="min-w-0 overflow-hidden">
-                <p className="text-xs font-bold text-white truncate">{user?.fullname || 'Demo User'}</p>
-                <span className="text-[10px] text-indigo-300 font-medium block truncate">
-                  {roleLabels[role] || 'Member'}
-                </span>
-              </div>
-            )}
-          </div>
-          {!isCollapsed && (
-            <button
-              onClick={handleLogout}
-              title="Log Out"
-              className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors shrink-0"
-              aria-label="Sign Out"
-            >
-              <LogOut className="w-4 h-4" />
-            </button>
-          )}
-        </div>
+      {/* Bottom Section: Theme Toggle, User Profile, Desktop Collapse Toggle */}
+      <div className="space-y-2.5 pt-3 border-t border-slate-200 dark:border-slate-800/80">
+        {/* 🌙 Theme Toggle Button */}
+        <ThemeToggle isCollapsed={isCollapsed} />
+
+        {/* 👤 User Profile + 🚪 Logout Button */}
+        <UserProfile isCollapsed={isCollapsed} />
 
         {/* Desktop Collapse / Expand Button */}
         <button
           onClick={onToggleCollapse}
-          className="hidden lg:flex w-full items-center justify-center p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/80 transition-colors border border-slate-800 text-xs font-medium gap-2"
+          type="button"
+          className="hidden lg:flex w-full items-center justify-center p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors border border-slate-200 dark:border-slate-800 text-xs font-medium gap-2 cursor-pointer"
           title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
@@ -178,9 +157,9 @@ export const Sidebar = ({
 
   return (
     <>
-      {/* 1. Permanent Desktop / Laptop Sidebar */}
+      {/* 1. Permanent Desktop / Laptop Sidebar (Full screen height from top to bottom) */}
       <aside
-        className={`hidden lg:flex flex-col border-r border-slate-800/80 bg-[#0B0F19] transition-all duration-300 ease-in-out shrink-0 select-none sticky top-16 h-[calc(100vh-4rem)] z-30 ${
+        className={`hidden lg:flex flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B0F19] transition-all duration-300 ease-in-out shrink-0 select-none sticky top-0 h-screen z-30 ${
           isCollapsed ? 'w-20' : 'w-64'
         }`}
       >
@@ -197,7 +176,7 @@ export const Sidebar = ({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={onCloseMobile}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm"
             />
 
             {/* Slide-out drawer panel */}
@@ -206,13 +185,15 @@ export const Sidebar = ({
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 250 }}
-              className="relative w-72 max-w-[85vw] h-full bg-[#0B0F19] border-r border-slate-800 shadow-2xl z-10 flex flex-col pt-4"
+              className="relative w-72 max-w-[85vw] h-full bg-white dark:bg-[#0B0F19] border-r border-slate-200 dark:border-slate-800 shadow-2xl z-10 flex flex-col pt-4"
             >
-              <div className="flex items-center justify-between px-4 pb-2 border-b border-slate-800/60">
-                <span className="text-xs font-bold text-white uppercase tracking-wider">Navigation</span>
+              <div className="flex items-center justify-between px-4 pb-2 border-b border-slate-200 dark:border-slate-800/60">
+                <span className="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-wider">
+                  Menu
+                </span>
                 <button
                   onClick={onCloseMobile}
-                  className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+                  className="p-1.5 rounded-lg text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
                   aria-label="Close drawer"
                 >
                   <X className="w-5 h-5" />

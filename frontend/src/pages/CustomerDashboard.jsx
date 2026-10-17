@@ -91,18 +91,18 @@ export const CustomerDashboard = () => {
     >
       {/* Welcome Banner Card */}
       <section aria-label="Welcome Overview">
-        <div className="glass-panel p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl border border-indigo-500/20 bg-gradient-to-r from-indigo-950/40 via-purple-950/30 to-slate-900/50 relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6 shadow-xl backdrop-blur-xl">
+        <div className="glass-panel p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl border border-indigo-200 dark:border-indigo-500/20 bg-gradient-to-r from-indigo-50 via-purple-50/50 to-white dark:from-indigo-950/40 dark:via-purple-950/30 dark:to-slate-900/50 relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6 shadow-sm dark:shadow-xl backdrop-blur-xl">
           <div className="space-y-2 max-w-2xl min-w-0">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 text-xs font-semibold">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100/70 dark:bg-indigo-500/15 border border-indigo-200 dark:border-indigo-500/30 text-indigo-700 dark:text-indigo-300 text-xs font-semibold">
+              <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-cyan-400 shrink-0" />
               <span className="truncate">R Corporation Priority Customer Portal</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Welcome, {user?.fullname || 'Customer'}
             </h1>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               {user?.profile?.company_name ? (
-                <span className="font-semibold text-indigo-300">
+                <span className="font-semibold text-indigo-600 dark:text-indigo-300">
                   Organization: {user.profile.company_name} •{' '}
                 </span>
               ) : null}
@@ -165,18 +165,18 @@ export const CustomerDashboard = () => {
         {/* Left Column: Recent Conversations */}
         <section aria-label="Recent Support Conversations" className="lg:col-span-7">
           <Card padding="none" className="p-5 sm:p-6 lg:p-7 space-y-5">
-            <header className="flex items-center justify-between pb-4 border-b border-slate-800 gap-2">
+            <header className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 gap-2">
               <div className="min-w-0">
-                <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">
                   Recent Support Conversations
                 </h2>
-                <p className="text-xs text-slate-400 truncate">
+                <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
                   Jump back into your recent interactions with R Corp AI
                 </p>
               </div>
               <Link
                 to="/chat"
-                className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 shrink-0 focus:outline-none focus:underline"
+                className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 flex items-center gap-1 shrink-0 focus:outline-none focus:underline"
                 aria-label="Open full chat interface"
               >
                 <span>Open Chat</span>
@@ -199,7 +199,7 @@ export const CustomerDashboard = () => {
                 {sessions.slice(0, 5).map((sess) => (
                   <article
                     key={sess.id || sess.session_uuid}
-                    className="p-3.5 sm:p-4 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-indigo-500/30 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 group"
+                    className="p-3.5 sm:p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/30 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 group"
                   >
                     <div className="min-w-0 w-full sm:w-auto sm:flex-1">
                       <div className="flex flex-wrap items-center gap-2 mb-1.5">
@@ -218,12 +218,12 @@ export const CustomerDashboard = () => {
                           })}
                         </span>
                       </div>
-                      <h3 className="text-sm font-semibold text-white group-hover:text-indigo-300 transition-colors truncate">
+                      <h3 className="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors truncate">
                         {sess.title || 'Support Session'}
                       </h3>
                       {sess.last_message && (
-                        <p className="text-xs text-slate-400 truncate mt-1">
-                          <span className="text-slate-500 font-medium">
+                        <p className="text-xs text-slate-600 dark:text-slate-400 truncate mt-1">
+                          <span className="text-slate-400 dark:text-slate-500 font-medium">
                             {sess.last_message.sender === 'customer' ? 'You: ' : 'AI: '}
                           </span>
                           {sess.last_message.message}
@@ -231,19 +231,19 @@ export const CustomerDashboard = () => {
                       )}
                     </div>
 
-                    <div className="flex items-center gap-2 shrink-0 w-full sm:w-auto justify-end pt-2 sm:pt-0 border-t border-slate-800/60 sm:border-t-0">
+                    <div className="flex items-center gap-2 shrink-0 w-full sm:w-auto justify-end pt-2 sm:pt-0 border-t border-slate-200 dark:border-slate-800/60 sm:border-t-0">
                       <a
                         href={chatService.getExportUrl(sess.session_uuid)}
                         title="Download Chat Transcript"
                         aria-label={`Download transcript for ${sess.title || 'conversation'}`}
-                        className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 border border-transparent hover:border-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="p-2 rounded-xl text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-transparent hover:border-slate-300 dark:hover:border-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
                       >
                         <Download className="w-4 h-4" />
                       </a>
                       <Link
                         to={`/chat?session=${sess.session_uuid}`}
                         aria-label={`Resume conversation ${sess.title || ''}`}
-                        className="px-3.5 py-1.5 rounded-xl bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 text-xs font-semibold hover:bg-indigo-600/30 hover:border-indigo-500/50 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 text-center"
+                        className="px-3.5 py-1.5 rounded-xl bg-indigo-50 dark:bg-indigo-600/20 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/30 text-xs font-semibold hover:bg-indigo-100 dark:hover:bg-indigo-600/30 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 text-center"
                       >
                         Resume
                       </Link>
@@ -258,18 +258,18 @@ export const CustomerDashboard = () => {
         {/* Right Column: Support Tickets */}
         <section aria-label="Support Tickets" className="lg:col-span-5">
           <Card padding="none" className="p-5 sm:p-6 lg:p-7 space-y-5">
-            <header className="flex items-center justify-between pb-4 border-b border-slate-800 gap-2">
+            <header className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 gap-2">
               <div className="min-w-0">
-                <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">
                   Support Tickets
                 </h2>
-                <p className="text-xs text-slate-400 truncate">
+                <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
                   Status of your formal escalations
                 </p>
               </div>
               <Link
                 to="/tickets"
-                className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 shrink-0 focus:outline-none focus:underline"
+                className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 flex items-center gap-1 shrink-0 focus:outline-none focus:underline"
                 aria-label="View all support tickets"
               >
                 <span>View All</span>
@@ -290,29 +290,29 @@ export const CustomerDashboard = () => {
                 {tickets.slice(0, 4).map((ticket) => (
                   <article
                     key={ticket.id}
-                    className="p-3.5 sm:p-4 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-indigo-500/30 transition-all space-y-2 group"
+                    className="p-3.5 sm:p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/30 transition-all space-y-2 group"
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <span className="font-mono text-xs font-bold text-indigo-300 truncate">
+                      <span className="font-mono text-xs font-bold text-indigo-600 dark:text-indigo-300 truncate">
                         {ticket.ticket_number}
                       </span>
                       <span
                         className={`px-2 py-0.5 rounded-full text-[10px] font-semibold border shrink-0 ${
-                          ticketPriorityStyles[ticket.priority] || 'text-slate-400 bg-slate-800 border-slate-700'
+                          ticketPriorityStyles[ticket.priority] || 'text-slate-500 bg-slate-100 border-slate-200 dark:text-slate-400 dark:bg-slate-800 dark:border-slate-700'
                         }`}
                       >
                         {ticket.priority}
                       </span>
                     </div>
-                    <h3 className="text-xs sm:text-sm font-semibold text-white group-hover:text-indigo-300 transition-colors truncate">
+                    <h3 className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors truncate">
                       {ticket.title}
                     </h3>
-                    <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-slate-800/40">
+                    <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 pt-1 border-t border-slate-200 dark:border-slate-800/40">
                       <div className="flex items-center gap-1.5 min-w-0">
-                        <span className="shrink-0 text-slate-400">Status:</span>
+                        <span className="shrink-0 text-slate-500 dark:text-slate-400">Status:</span>
                         <span
                           className={`px-2 py-0.5 rounded-full text-[10px] font-medium border truncate ${
-                            ticketStatusStyles[ticket.status] || 'bg-slate-800 text-slate-300 border-slate-700'
+                            ticketStatusStyles[ticket.status] || 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700'
                           }`}
                         >
                           {ticket.status}

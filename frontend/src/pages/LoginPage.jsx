@@ -85,29 +85,29 @@ export const LoginPage = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="w-full max-w-md mx-auto rounded-2xl sm:rounded-3xl border border-slate-800 bg-slate-900/50 backdrop-blur-xl p-5 sm:p-8 lg:border-none lg:bg-transparent lg:backdrop-blur-none lg:p-0 space-y-6 shadow-xl lg:shadow-none"
+          className="w-full max-w-md mx-auto rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/50 backdrop-blur-xl p-5 sm:p-8 lg:border-none lg:bg-transparent lg:backdrop-blur-none lg:p-0 space-y-6 shadow-xl lg:shadow-none"
         >
           {/* Header */}
           <header className="space-y-1.5 text-center sm:text-left">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-medium mb-1">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/20 text-indigo-700 dark:text-indigo-400 text-xs font-medium mb-1">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Enterprise AI Workspace</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Welcome Back
             </h1>
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
               Sign in to access your R Corporation AI support workspace.
             </p>
           </header>
 
           {/* Quick Demo Role Selectors */}
-          <div className="p-3 sm:p-3.5 rounded-2xl bg-indigo-950/30 border border-indigo-500/20 space-y-2">
+          <div className="p-3 sm:p-3.5 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-500/20 space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-semibold text-indigo-300 uppercase tracking-wider">
+              <span className="text-[11px] font-semibold text-indigo-700 dark:text-indigo-300 uppercase tracking-wider">
                 1-Click Demo Evaluation Roles:
               </span>
-              <ShieldCheck className="w-3.5 h-3.5 text-indigo-400" />
+              <ShieldCheck className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
               <button
@@ -115,7 +115,7 @@ export const LoginPage = () => {
                 onClick={() => handleQuickLogin('customer')}
                 disabled={loading}
                 aria-label="Quick login as Customer"
-                className="min-h-[40px] px-2 py-2 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-[11px] sm:text-xs font-medium text-slate-200 transition-all hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 active:scale-95 disabled:opacity-50"
+                className="min-h-[40px] px-2 py-2 rounded-lg bg-white dark:bg-slate-900/90 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700/80 text-[11px] sm:text-xs font-medium text-slate-700 dark:text-slate-200 transition-all hover:border-slate-300 dark:hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 active:scale-95 disabled:opacity-50 cursor-pointer shadow-sm dark:shadow-none"
               >
                 👤 Customer
               </button>
@@ -124,7 +124,7 @@ export const LoginPage = () => {
                 onClick={() => handleQuickLogin('support_agent')}
                 disabled={loading}
                 aria-label="Quick login as Support Agent"
-                className="min-h-[40px] px-2 py-2 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-[11px] sm:text-xs font-medium text-indigo-300 transition-all hover:border-indigo-500/40 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 active:scale-95 disabled:opacity-50"
+                className="min-h-[40px] px-2 py-2 rounded-lg bg-white dark:bg-slate-900/90 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700/80 text-[11px] sm:text-xs font-medium text-indigo-700 dark:text-indigo-300 transition-all hover:border-indigo-300 dark:hover:border-indigo-500/40 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 active:scale-95 disabled:opacity-50 cursor-pointer shadow-sm dark:shadow-none"
               >
                 🎧 Agent
               </button>
@@ -133,7 +133,7 @@ export const LoginPage = () => {
                 onClick={() => handleQuickLogin('admin')}
                 disabled={loading}
                 aria-label="Quick login as Admin"
-                className="min-h-[40px] px-2 py-2 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-[11px] sm:text-xs font-medium text-purple-300 transition-all hover:border-purple-500/40 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 active:scale-95 disabled:opacity-50"
+                className="min-h-[40px] px-2 py-2 rounded-lg bg-white dark:bg-slate-900/90 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700/80 text-[11px] sm:text-xs font-medium text-purple-700 dark:text-purple-300 transition-all hover:border-purple-300 dark:hover:border-purple-500/40 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 active:scale-95 disabled:opacity-50 cursor-pointer shadow-sm dark:shadow-none"
               >
                 🛡️ Admin
               </button>
@@ -142,7 +142,7 @@ export const LoginPage = () => {
                 onClick={() => handleQuickLogin('super_admin')}
                 disabled={loading}
                 aria-label="Quick login as Super Admin"
-                className="min-h-[40px] px-2 py-2 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-[11px] sm:text-xs font-medium text-cyan-300 transition-all hover:border-cyan-500/40 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 active:scale-95 disabled:opacity-50"
+                className="min-h-[40px] px-2 py-2 rounded-lg bg-white dark:bg-slate-900/90 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700/80 text-[11px] sm:text-xs font-medium text-cyan-700 dark:text-cyan-300 transition-all hover:border-cyan-300 dark:hover:border-cyan-500/40 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 active:scale-95 disabled:opacity-50 cursor-pointer shadow-sm dark:shadow-none"
               >
                 👑 Super
               </button>
@@ -156,9 +156,9 @@ export const LoginPage = () => {
               animate={{ opacity: 1, y: 0 }}
               role="alert"
               aria-live="polite"
-              className="p-3 sm:p-3.5 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2.5"
+              className="p-3 sm:p-3.5 rounded-xl bg-rose-50 dark:bg-rose-500/15 border border-rose-200 dark:border-rose-500/30 text-rose-700 dark:text-rose-300 text-xs flex items-start gap-2.5"
             >
-              <AlertCircle className="w-4 h-4 shrink-0 text-rose-400 mt-0.5" />
+              <AlertCircle className="w-4 h-4 shrink-0 text-rose-600 dark:text-rose-400 mt-0.5" />
               <span className="leading-relaxed">{error}</span>
             </motion.div>
           )}
@@ -169,7 +169,7 @@ export const LoginPage = () => {
             onClick={handleGoogleMock}
             disabled={loading}
             aria-label="Continue with Google"
-            className="w-full py-2.5 sm:py-3 px-4 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 hover:border-slate-600 flex items-center justify-center gap-3 text-xs sm:text-sm font-semibold text-white transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50 active:scale-[0.99] disabled:opacity-50"
+            className="w-full py-2.5 sm:py-3 px-4 rounded-xl bg-white dark:bg-slate-900/90 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700/80 hover:border-slate-300 dark:hover:border-slate-600 flex items-center justify-center gap-3 text-xs sm:text-sm font-semibold text-slate-800 dark:text-white transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50 active:scale-[0.99] disabled:opacity-50 cursor-pointer"
           >
             <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -194,8 +194,8 @@ export const LoginPage = () => {
 
           {/* Divider */}
           <div className="relative flex items-center justify-center my-1">
-            <div className="border-t border-slate-800 w-full" />
-            <span className="bg-[#0B0F19] px-3 text-[11px] sm:text-xs text-slate-500 uppercase tracking-wider font-medium absolute">
+            <div className="border-t border-slate-200 dark:border-slate-800 w-full" />
+            <span className="bg-slate-50 dark:bg-[#0B0F19] px-3 text-[11px] sm:text-xs text-slate-500 uppercase tracking-wider font-medium absolute">
               Or with email
             </span>
           </div>
@@ -205,7 +205,7 @@ export const LoginPage = () => {
             <div className="space-y-1.5">
               <label
                 htmlFor="login-email"
-                className="block text-xs font-semibold text-slate-300"
+                className="block text-xs font-semibold text-slate-700 dark:text-slate-300"
               >
                 Work Email Address
               </label>
@@ -219,7 +219,7 @@ export const LoginPage = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@company.com"
-                  className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
                 />
               </div>
             </div>
@@ -228,13 +228,13 @@ export const LoginPage = () => {
               <div className="flex items-center justify-between">
                 <label
                   htmlFor="login-password"
-                  className="block text-xs font-semibold text-slate-300"
+                  className="block text-xs font-semibold text-slate-700 dark:text-slate-300"
                 >
                   Password
                 </label>
                 <Link
                   to="/forgot-password"
-                  className="text-xs text-indigo-400 hover:text-indigo-300 font-medium transition-colors focus:outline-none focus:underline"
+                  className="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 font-medium transition-colors focus:outline-none focus:underline"
                 >
                   Forgot password?
                 </Link>
@@ -249,7 +249,7 @@ export const LoginPage = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
                 />
               </div>
             </div>
@@ -288,43 +288,43 @@ export const LoginPage = () => {
       </div>
 
       {/* Right Visual Brand Column (Split Screen Showcase on LG+) */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-indigo-950/60 via-purple-950/40 to-[#070A11] p-8 xl:p-12 relative overflow-hidden items-center justify-center border-l border-slate-800/80">
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-indigo-50/80 via-purple-50/50 to-slate-100 dark:from-indigo-950/60 dark:via-purple-950/40 dark:to-[#070A11] p-8 xl:p-12 relative overflow-hidden items-center justify-center border-l border-slate-200 dark:border-slate-800/80 transition-colors">
         {/* Ambient Glows */}
         <div className="absolute top-1/4 -right-20 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-lg space-y-8 relative z-10">
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-500 to-cyan-400 p-[1px] shadow-xl">
-            <div className="w-full h-full bg-[#0B0F19] rounded-[15px] flex items-center justify-center">
-              <Bot className="w-7 h-7 text-indigo-400" />
+            <div className="w-full h-full bg-white dark:bg-[#0B0F19] rounded-[15px] flex items-center justify-center">
+              <Bot className="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
             </div>
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-2xl xl:text-3xl font-extrabold text-white tracking-tight leading-tight">
+            <h2 className="text-2xl xl:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
               AI Customer Support Built on Empathy & Deep Grounding
             </h2>
-            <p className="text-slate-300 text-sm leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
               Every conversation is protected by strict retrieval guardrails and enriched by real-time emotion telemetry to de-escalate frustration before it impacts retention.
             </p>
           </div>
 
-          <div className="space-y-3.5 pt-4 border-t border-slate-800/80 text-sm text-slate-300">
+          <div className="space-y-3.5 pt-4 border-t border-slate-200 dark:border-slate-800/80 text-sm text-slate-700 dark:text-slate-300">
             <div className="flex items-center gap-3">
-              <div className="w-5 h-5 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <div className="w-5 h-5 rounded-full bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               </div>
               <span>Multi-tenant Role-Based Access Control (RBAC)</span>
             </div>
             <div className="flex items-center gap-3">
-              <div className="w-5 h-5 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <div className="w-5 h-5 rounded-full bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               </div>
               <span>Direct RAG retrieval with zero hallucination guarantee</span>
             </div>
             <div className="flex items-center gap-3">
-              <div className="w-5 h-5 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <div className="w-5 h-5 rounded-full bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               </div>
               <span>Automated Ticket Generation on Customer Escalation</span>
             </div>

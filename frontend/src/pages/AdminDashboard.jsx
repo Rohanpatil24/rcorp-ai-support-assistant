@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 import { analyticsService, contactService } from '../services/domainServices';
 import { authService } from '../services/authService';
 import { StatsCard } from '../components/StatsCard';
@@ -39,6 +40,7 @@ import {
 
 export const AdminDashboard = () => {
   const { user, isSuperAdmin } = useAuth();
+  const { isDark } = useTheme();
   const [analytics, setAnalytics] = useState(null);
   const [usersList, setUsersList] = useState([]);
   const [contactLeads, setContactLeads] = useState([]);
@@ -147,14 +149,14 @@ export const AdminDashboard = () => {
       {/* Header & Tab Switcher */}
       <header className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div className="space-y-1">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/25 text-purple-300 text-xs font-semibold mb-1">
-            <Shield className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/25 text-purple-700 dark:text-purple-300 text-xs font-semibold mb-1">
+            <Shield className="w-3.5 h-3.5 text-indigo-600 dark:text-cyan-400 shrink-0" />
             <span>Executive Operations Control Center</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Admin & Analytics Hub
           </h1>
-          <p className="text-xs sm:text-sm text-slate-400 max-w-2xl leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
             Real-time telemetry on customer emotion dynamics, SLA ticket resolution, and lead management.
           </p>
         </div>
@@ -162,17 +164,17 @@ export const AdminDashboard = () => {
         {/* Tab switcher */}
         <nav
           aria-label="Dashboard sections"
-          className="flex flex-wrap sm:flex-nowrap overflow-x-auto gap-1 p-1 bg-slate-900 border border-slate-800 rounded-2xl w-full sm:w-auto"
+          className="flex flex-wrap sm:flex-nowrap overflow-x-auto gap-1 p-1 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full sm:w-auto shadow-sm dark:shadow-none"
         >
           <button
             type="button"
             role="tab"
             aria-selected={activeTab === 'analytics'}
             onClick={() => setActiveTab('analytics')}
-            className={`flex-1 sm:flex-initial px-3.5 sm:px-4 py-2 rounded-xl transition-all whitespace-nowrap text-xs font-semibold text-center ${
+            className={`flex-1 sm:flex-initial px-3.5 sm:px-4 py-2 rounded-xl transition-all whitespace-nowrap text-xs font-semibold text-center cursor-pointer ${
               activeTab === 'analytics'
                 ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50'
             }`}
           >
             Analytics & KPIs
@@ -182,10 +184,10 @@ export const AdminDashboard = () => {
             role="tab"
             aria-selected={activeTab === 'users'}
             onClick={() => setActiveTab('users')}
-            className={`flex-1 sm:flex-initial px-3.5 sm:px-4 py-2 rounded-xl transition-all whitespace-nowrap text-xs font-semibold text-center ${
+            className={`flex-1 sm:flex-initial px-3.5 sm:px-4 py-2 rounded-xl transition-all whitespace-nowrap text-xs font-semibold text-center cursor-pointer ${
               activeTab === 'users'
                 ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50'
             }`}
           >
             Users & Roles ({usersList.length})
@@ -195,10 +197,10 @@ export const AdminDashboard = () => {
             role="tab"
             aria-selected={activeTab === 'leads'}
             onClick={() => setActiveTab('leads')}
-            className={`flex-1 sm:flex-initial px-3.5 sm:px-4 py-2 rounded-xl transition-all whitespace-nowrap text-xs font-semibold text-center ${
+            className={`flex-1 sm:flex-initial px-3.5 sm:px-4 py-2 rounded-xl transition-all whitespace-nowrap text-xs font-semibold text-center cursor-pointer ${
               activeTab === 'leads'
                 ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50'
             }`}
           >
             Contact Leads ({contactLeads.length})
@@ -262,15 +264,15 @@ export const AdminDashboard = () => {
           {/* Main Charts Row */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6">
             {/* Daily Volume Trend (Area Chart) */}
-            <article className="lg:col-span-8 rounded-2xl border border-slate-800 bg-slate-900/50 p-4 sm:p-6 space-y-4 shadow-xl flex flex-col justify-between">
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+            <article className="lg:col-span-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-4 sm:p-6 space-y-4 shadow-sm dark:shadow-xl flex flex-col justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
                 <div className="flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-indigo-400 shrink-0" />
-                  <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
+                  <TrendingUp className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+                  <h2 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white tracking-tight">
                     Daily AI Chat Volume & Ticket Influx
                   </h2>
                 </div>
-                <span className="text-[11px] font-mono text-slate-400 bg-slate-800/60 px-2 py-0.5 rounded-md">
+                <span className="text-[11px] font-mono text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/60 px-2 py-0.5 rounded-md">
                   Past 7 Days
                 </span>
               </div>
@@ -288,17 +290,17 @@ export const AdminDashboard = () => {
                         <stop offset="95%" stopColor="#7C3AED" stopOpacity={0.0} />
                       </linearGradient>
                     </defs>
-                    <XAxis dataKey="day" stroke="#64748B" fontSize={11} tickLine={false} />
-                    <YAxis stroke="#64748B" fontSize={11} tickLine={false} />
+                    <XAxis dataKey="day" stroke={isDark ? '#64748B' : '#94A3B8'} fontSize={11} tickLine={false} />
+                    <YAxis stroke={isDark ? '#64748B' : '#94A3B8'} fontSize={11} tickLine={false} />
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: '#0F172A',
-                        borderColor: '#334155',
+                        backgroundColor: isDark ? '#0F172A' : '#FFFFFF',
+                        borderColor: isDark ? '#334155' : '#E2E8F0',
                         borderRadius: '12px',
-                        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)',
-                        color: '#FFFFFF',
+                        boxShadow: isDark ? '0 10px 25px -5px rgba(0, 0, 0, 0.5)' : '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
+                        color: isDark ? '#FFFFFF' : '#0F172A',
                       }}
-                      itemStyle={{ color: '#E2E8F0', fontSize: '12px' }}
+                      itemStyle={{ color: isDark ? '#E2E8F0' : '#1E293B', fontSize: '12px' }}
                     />
                     <Legend wrapperStyle={{ paddingTop: '8px', fontSize: '12px' }} />
                     <Area
@@ -325,11 +327,11 @@ export const AdminDashboard = () => {
             </article>
 
             {/* Sentiment Breakdown (Donut Chart) */}
-            <article className="lg:col-span-4 rounded-2xl border border-slate-800 bg-slate-900/50 p-4 sm:p-6 space-y-4 shadow-xl flex flex-col justify-between">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+            <article className="lg:col-span-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-4 sm:p-6 space-y-4 shadow-sm dark:shadow-xl flex flex-col justify-between">
+              <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
                 <div className="flex items-center gap-2">
-                  <PieIcon className="w-4 h-4 text-cyan-400 shrink-0" />
-                  <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">Customer Sentiment</h2>
+                  <PieIcon className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0" />
+                  <h2 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white tracking-tight">Customer Sentiment</h2>
                 </div>
               </div>
 
@@ -351,19 +353,19 @@ export const AdminDashboard = () => {
                     </Pie>
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: '#0F172A',
-                        borderColor: '#334155',
+                        backgroundColor: isDark ? '#0F172A' : '#FFFFFF',
+                        borderColor: isDark ? '#334155' : '#E2E8F0',
                         borderRadius: '12px',
-                        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)',
-                        color: '#FFFFFF',
+                        boxShadow: isDark ? '0 10px 25px -5px rgba(0, 0, 0, 0.5)' : '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
+                        color: isDark ? '#FFFFFF' : '#0F172A',
                       }}
-                      itemStyle={{ color: '#E2E8F0', fontSize: '12px' }}
+                      itemStyle={{ color: isDark ? '#E2E8F0' : '#1E293B', fontSize: '12px' }}
                     />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
 
-              <div className="flex flex-wrap items-center justify-around gap-2 text-xs text-slate-300 pt-3 border-t border-slate-800">
+              <div className="flex flex-wrap items-center justify-around gap-2 text-xs text-slate-600 dark:text-slate-300 pt-3 border-t border-slate-100 dark:border-slate-800">
                 {sentimentData.map((s, idx) => (
                   <div key={idx} className="flex items-center gap-1.5">
                     <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
@@ -375,15 +377,15 @@ export const AdminDashboard = () => {
           </div>
 
           {/* Emotion Distribution (Bar Chart) */}
-          <article className="rounded-2xl border border-slate-800 bg-slate-900/50 p-4 sm:p-6 space-y-4 shadow-xl">
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+          <article className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-4 sm:p-6 space-y-4 shadow-sm dark:shadow-xl">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
               <div className="flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-purple-400 shrink-0" />
-                <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
+                <BarChart3 className="w-4 h-4 text-purple-600 dark:text-purple-400 shrink-0" />
+                <h2 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white tracking-tight">
                   Multi-Dimensional Emotion Classification
                 </h2>
               </div>
-              <span className="text-[11px] text-slate-400 font-mono bg-slate-800/60 px-2 py-0.5 rounded-md">
+              <span className="text-[11px] text-slate-600 dark:text-slate-400 font-mono bg-slate-100 dark:bg-slate-800/60 px-2 py-0.5 rounded-md">
                 Real-time Model Telemetry
               </span>
             </div>
@@ -391,17 +393,17 @@ export const AdminDashboard = () => {
             <div className="h-60 sm:h-72 w-full min-w-0">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={emotionData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                  <XAxis dataKey="name" stroke="#64748B" fontSize={11} tickLine={false} />
-                  <YAxis stroke="#64748B" fontSize={11} tickLine={false} />
+                  <XAxis dataKey="name" stroke={isDark ? '#64748B' : '#94A3B8'} fontSize={11} tickLine={false} />
+                  <YAxis stroke={isDark ? '#64748B' : '#94A3B8'} fontSize={11} tickLine={false} />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: '#0F172A',
-                      borderColor: '#334155',
+                      backgroundColor: isDark ? '#0F172A' : '#FFFFFF',
+                      borderColor: isDark ? '#334155' : '#E2E8F0',
                       borderRadius: '12px',
-                      boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)',
-                      color: '#FFFFFF',
+                      boxShadow: isDark ? '0 10px 25px -5px rgba(0, 0, 0, 0.5)' : '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
+                      color: isDark ? '#FFFFFF' : '#0F172A',
                     }}
-                    itemStyle={{ color: '#E2E8F0', fontSize: '12px' }}
+                    itemStyle={{ color: isDark ? '#E2E8F0' : '#1E293B', fontSize: '12px' }}
                   />
                   <Bar dataKey="count" fill="#7C3AED" radius={[6, 6, 0, 0]} name="Inquiries Detected" />
                 </BarChart>
@@ -419,16 +421,16 @@ export const AdminDashboard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25 }}
           aria-label="Workspace User Accounts & Role Permissions"
-          className="rounded-2xl border border-slate-800 bg-slate-900/50 p-4 sm:p-6 space-y-4 shadow-xl"
+          className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-4 sm:p-6 space-y-4 shadow-sm dark:shadow-xl"
         >
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
             <div>
-              <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
+              <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">
                 Workspace User Accounts & Role Permissions
               </h2>
-              <p className="text-xs text-slate-400">Configure role-based access control and workspace capabilities</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400">Configure role-based access control and workspace capabilities</p>
             </div>
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 w-fit">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/20 w-fit">
               Total: {usersList.length}
             </span>
           </div>
@@ -440,9 +442,9 @@ export const AdminDashboard = () => {
               description="There are currently no registered workspace accounts."
             />
           ) : (
-            <div className="w-full overflow-x-auto rounded-xl border border-slate-800/80 bg-slate-950/40">
-              <table className="w-full text-left text-xs sm:text-sm text-slate-300 min-w-[640px]">
-                <thead className="border-b border-slate-800 bg-slate-900/90 text-slate-400 uppercase text-[10px] sm:text-[11px] font-semibold tracking-wider sticky top-0 backdrop-blur z-10">
+            <div className="w-full overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950/40 shadow-sm dark:shadow-none">
+              <table className="w-full text-left text-xs sm:text-sm text-slate-700 dark:text-slate-300 min-w-[640px]">
+                <thead className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/90 text-slate-500 dark:text-slate-400 uppercase text-[10px] sm:text-[11px] font-semibold tracking-wider sticky top-0 backdrop-blur z-10">
                   <tr>
                     <th scope="col" className="py-3.5 px-4">User</th>
                     <th scope="col" className="py-3.5 px-4">Email</th>
@@ -452,32 +454,32 @@ export const AdminDashboard = () => {
                     <th scope="col" className="py-3.5 px-4 text-right">Role Elevation</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 font-sans">
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 font-sans">
                   {usersList.map((u) => (
-                    <tr key={u.id} className="hover:bg-indigo-600/[0.04] transition-colors">
-                      <td className="py-3.5 px-4 font-semibold text-white">
+                    <tr key={u.id} className="hover:bg-slate-50 dark:hover:bg-indigo-600/[0.04] transition-colors">
+                      <td className="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
                         <div className="flex items-center gap-2.5 min-w-0">
-                          <div className="w-8 h-8 rounded-lg bg-indigo-600/25 border border-indigo-500/30 text-indigo-300 flex items-center justify-center font-bold text-xs shrink-0">
+                          <div className="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-600/25 border border-indigo-200 dark:border-indigo-500/30 text-indigo-700 dark:text-indigo-300 flex items-center justify-center font-bold text-xs shrink-0">
                             {u.fullname?.charAt(0).toUpperCase() || 'U'}
                           </div>
                           <span className="truncate max-w-[140px] sm:max-w-none">{u.fullname}</span>
                         </div>
                       </td>
-                      <td className="py-3.5 px-4 font-mono text-slate-400 text-xs truncate max-w-[180px] sm:max-w-none">
+                      <td className="py-3.5 px-4 font-mono text-slate-500 dark:text-slate-400 text-xs truncate max-w-[180px] sm:max-w-none">
                         {u.email}
                       </td>
                       <td className="py-3.5 px-4 whitespace-nowrap">
-                        <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-indigo-500/15 text-indigo-300 border border-indigo-500/25 uppercase tracking-wide">
+                        <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-indigo-50 dark:bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/25 uppercase tracking-wide">
                           {u.role.replace('_', ' ')}
                         </span>
                       </td>
                       <td className="py-3.5 px-4 whitespace-nowrap">
-                        <span className="text-emerald-400 flex items-center gap-1.5 text-xs font-medium">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 text-xs font-medium">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                           <span>Active</span>
                         </span>
                       </td>
-                      <td className="py-3.5 px-4 text-slate-400 text-xs whitespace-nowrap">
+                      <td className="py-3.5 px-4 text-slate-500 dark:text-slate-400 text-xs whitespace-nowrap">
                         {new Date(u.created_at).toLocaleDateString()}
                       </td>
                       <td className="py-3.5 px-4 text-right whitespace-nowrap">
@@ -485,7 +487,7 @@ export const AdminDashboard = () => {
                           value={u.role}
                           onChange={(e) => handleRoleChange(u.id, e.target.value)}
                           aria-label={`Change role for ${u.fullname}`}
-                          className="bg-slate-900 border border-slate-700/80 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors cursor-pointer"
+                          className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors cursor-pointer"
                         >
                           <option value="customer">Customer</option>
                           <option value="support_agent">Support Agent</option>
@@ -510,16 +512,16 @@ export const AdminDashboard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25 }}
           aria-label="Inbound Enterprise Leads & Demo Requests"
-          className="rounded-2xl border border-slate-800 bg-slate-900/50 p-4 sm:p-6 space-y-4 shadow-xl"
+          className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-4 sm:p-6 space-y-4 shadow-sm dark:shadow-xl"
         >
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
             <div>
-              <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
+              <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">
                 Inbound Enterprise Leads & Demo Requests
               </h2>
-              <p className="text-xs text-slate-400">Captured via the Contact Us and Demo Request modules</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400">Captured via the Contact Us and Demo Request modules</p>
             </div>
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 w-fit">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/20 w-fit">
               Total: {contactLeads.length}
             </span>
           </div>
@@ -531,9 +533,9 @@ export const AdminDashboard = () => {
               description="Incoming enterprise inquiries and demo requests will appear here."
             />
           ) : (
-            <div className="w-full overflow-x-auto rounded-xl border border-slate-800/80 bg-slate-950/40">
-              <table className="w-full text-left text-xs sm:text-sm text-slate-300 min-w-[700px]">
-                <thead className="border-b border-slate-800 bg-slate-900/90 text-slate-400 uppercase text-[10px] sm:text-[11px] font-semibold tracking-wider sticky top-0 backdrop-blur z-10">
+            <div className="w-full overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950/40 shadow-sm dark:shadow-none">
+              <table className="w-full text-left text-xs sm:text-sm text-slate-700 dark:text-slate-300 min-w-[700px]">
+                <thead className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/90 text-slate-500 dark:text-slate-400 uppercase text-[10px] sm:text-[11px] font-semibold tracking-wider sticky top-0 backdrop-blur z-10">
                   <tr>
                     <th scope="col" className="py-3.5 px-4">Contact</th>
                     <th scope="col" className="py-3.5 px-4">Company</th>
@@ -543,24 +545,24 @@ export const AdminDashboard = () => {
                     <th scope="col" className="py-3.5 px-4 text-right">Action</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 font-sans">
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 font-sans">
                   {contactLeads.map((lead) => (
-                    <tr key={lead.id} className="hover:bg-indigo-600/[0.04] transition-colors">
+                    <tr key={lead.id} className="hover:bg-slate-50 dark:hover:bg-indigo-600/[0.04] transition-colors">
                       <td className="py-3.5 px-4">
-                        <p className="font-semibold text-white truncate max-w-[150px] sm:max-w-none">{lead.name}</p>
-                        <p className="text-slate-400 font-mono text-[11px] truncate max-w-[180px] sm:max-w-none">{lead.email}</p>
+                        <p className="font-semibold text-slate-900 dark:text-white truncate max-w-[150px] sm:max-w-none">{lead.name}</p>
+                        <p className="text-slate-500 dark:text-slate-400 font-mono text-[11px] truncate max-w-[180px] sm:max-w-none">{lead.email}</p>
                       </td>
-                      <td className="py-3.5 px-4 text-slate-300 whitespace-nowrap">{lead.company || 'N/A'}</td>
-                      <td className="py-3.5 px-4 text-slate-300 max-w-xs truncate" title={lead.message || lead.subject}>
+                      <td className="py-3.5 px-4 text-slate-600 dark:text-slate-300 whitespace-nowrap">{lead.company || 'N/A'}</td>
+                      <td className="py-3.5 px-4 text-slate-600 dark:text-slate-300 max-w-xs truncate" title={lead.message || lead.subject}>
                         {lead.subject}
                       </td>
                       <td className="py-3.5 px-4 whitespace-nowrap">
                         {lead.is_demo_request ? (
-                          <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-purple-500/15 text-purple-300 border border-purple-500/30">
+                          <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-purple-50 dark:bg-purple-500/15 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-500/30">
                             Demo Request
                           </span>
                         ) : (
-                          <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+                          <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-cyan-50 dark:bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-500/30">
                             General
                           </span>
                         )}
@@ -568,12 +570,12 @@ export const AdminDashboard = () => {
                       <td className="py-3.5 px-4 whitespace-nowrap">
                         <span className={`px-2.5 py-1 rounded-full text-[10px] font-semibold border ${
                           lead.status === 'Qualified'
-                            ? 'bg-purple-500/15 text-purple-300 border-purple-500/30'
+                            ? 'bg-purple-50 dark:bg-purple-500/15 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-500/30'
                             : lead.status === 'Contacted'
-                            ? 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30'
+                            ? 'bg-cyan-50 dark:bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-500/30'
                             : lead.status === 'Closed'
-                            ? 'bg-slate-500/15 text-slate-400 border-slate-500/30'
-                            : 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
+                            ? 'bg-slate-100 dark:bg-slate-500/15 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-500/30'
+                            : 'bg-emerald-50 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/30'
                         }`}>
                           {lead.status}
                         </span>
@@ -583,7 +585,7 @@ export const AdminDashboard = () => {
                           value={lead.status}
                           onChange={(e) => handleLeadStatusChange(lead.id, e.target.value)}
                           aria-label={`Update status for lead ${lead.name}`}
-                          className="bg-slate-900 border border-slate-700/80 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors cursor-pointer"
+                          className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors cursor-pointer"
                         >
                           <option value="New">New</option>
                           <option value="Contacted">Contacted</option>

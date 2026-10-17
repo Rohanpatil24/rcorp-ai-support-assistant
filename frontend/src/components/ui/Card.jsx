@@ -16,8 +16,8 @@ export const Card = ({
   };
 
   const baseStyle = glass
-    ? 'glass-card border border-white/[0.08] rounded-2xl sm:rounded-3xl bg-[#111827]/60 backdrop-blur-xl'
-    : 'bg-slate-900/90 border border-slate-800 rounded-2xl sm:rounded-3xl';
+    ? 'glass-card rounded-2xl sm:rounded-3xl'
+    : 'bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-2xl sm:rounded-3xl shadow-sm dark:shadow-none text-slate-800 dark:text-slate-100';
 
   const hoverStyle = hoverEffect
     ? 'transition-all duration-300 hover:border-indigo-500/40 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-500/10'

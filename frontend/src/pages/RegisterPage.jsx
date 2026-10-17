@@ -81,18 +81,18 @@ export const RegisterPage = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="w-full max-w-md sm:max-w-lg lg:max-w-xl mx-auto rounded-2xl sm:rounded-3xl border border-slate-800 bg-slate-900/50 backdrop-blur-xl p-5 sm:p-8 lg:border-none lg:bg-transparent lg:backdrop-blur-none lg:p-0 space-y-6 shadow-xl lg:shadow-none"
+          className="w-full max-w-md sm:max-w-lg lg:max-w-xl mx-auto rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/50 backdrop-blur-xl p-5 sm:p-8 lg:border-none lg:bg-transparent lg:backdrop-blur-none lg:p-0 space-y-6 shadow-xl lg:shadow-none"
         >
           {/* Header */}
           <header className="space-y-1.5 text-center sm:text-left">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-medium mb-1">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/20 text-indigo-700 dark:text-indigo-400 text-xs font-medium mb-1">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Get Started Free</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Create Workspace Account
             </h1>
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
               Join enterprise teams elevating customer experience with R Corporation AI.
             </p>
           </header>
@@ -104,9 +104,9 @@ export const RegisterPage = () => {
               animate={{ opacity: 1, y: 0 }}
               role="alert"
               aria-live="polite"
-              className="p-3 sm:p-3.5 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2.5"
+              className="p-3 sm:p-3.5 rounded-xl bg-rose-50 dark:bg-rose-500/15 border border-rose-200 dark:border-rose-500/30 text-rose-700 dark:text-rose-300 text-xs flex items-start gap-2.5"
             >
-              <AlertCircle className="w-4 h-4 shrink-0 text-rose-400 mt-0.5" />
+              <AlertCircle className="w-4 h-4 shrink-0 text-rose-600 dark:text-rose-400 mt-0.5" />
               <span className="leading-relaxed break-words">{error}</span>
             </motion.div>
           )}
@@ -117,7 +117,7 @@ export const RegisterPage = () => {
             <div className="space-y-1.5">
               <label
                 htmlFor="register-fullname"
-                className="block text-xs font-semibold text-slate-300"
+                className="block text-xs font-semibold text-slate-700 dark:text-slate-300"
               >
                 Full Name *
               </label>
@@ -132,7 +132,7 @@ export const RegisterPage = () => {
                   value={formData.fullname}
                   onChange={handleChange}
                   placeholder="e.g. David Miller"
-                  className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
                 />
               </div>
             </div>
@@ -142,7 +142,7 @@ export const RegisterPage = () => {
               <div className="space-y-1.5">
                 <label
                   htmlFor="register-email"
-                  className="block text-xs font-semibold text-slate-300"
+                  className="block text-xs font-semibold text-slate-700 dark:text-slate-300"
                 >
                   Work Email *
                 </label>
@@ -157,7 +157,7 @@ export const RegisterPage = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="david@company.com"
-                    className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
                   />
                 </div>
               </div>
@@ -165,7 +165,7 @@ export const RegisterPage = () => {
               <div className="space-y-1.5">
                 <label
                   htmlFor="register-mobile"
-                  className="block text-xs font-semibold text-slate-300"
+                  className="block text-xs font-semibold text-slate-700 dark:text-slate-300"
                 >
                   Mobile Number
                 </label>
@@ -179,7 +179,7 @@ export const RegisterPage = () => {
                     value={formData.mobile}
                     onChange={handleChange}
                     placeholder="+1 (555) 234-8901"
-                    className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
                   />
                 </div>
               </div>
@@ -189,7 +189,7 @@ export const RegisterPage = () => {
             <div className="space-y-1.5">
               <label
                 htmlFor="register-company"
-                className="block text-xs font-semibold text-slate-300"
+                className="block text-xs font-semibold text-slate-700 dark:text-slate-300"
               >
                 Company Name
               </label>
@@ -203,7 +203,7 @@ export const RegisterPage = () => {
                   value={formData.company_name}
                   onChange={handleChange}
                   placeholder="Miller Logistics LLC"
-                  className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
                 />
               </div>
             </div>
@@ -213,7 +213,7 @@ export const RegisterPage = () => {
               <div className="space-y-1.5">
                 <label
                   htmlFor="register-password"
-                  className="block text-xs font-semibold text-slate-300"
+                  className="block text-xs font-semibold text-slate-700 dark:text-slate-300"
                 >
                   Password *
                 </label>
@@ -228,7 +228,7 @@ export const RegisterPage = () => {
                     value={formData.password}
                     onChange={handleChange}
                     placeholder="Min. 8 characters"
-                    className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
                   />
                 </div>
               </div>
@@ -236,7 +236,7 @@ export const RegisterPage = () => {
               <div className="space-y-1.5">
                 <label
                   htmlFor="register-confirm-password"
-                  className="block text-xs font-semibold text-slate-300"
+                  className="block text-xs font-semibold text-slate-700 dark:text-slate-300"
                 >
                   Confirm Password *
                 </label>
@@ -251,7 +251,7 @@ export const RegisterPage = () => {
                     value={formData.confirm_password}
                     onChange={handleChange}
                     placeholder="Repeat password"
-                    className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
                   />
                 </div>
               </div>
@@ -262,7 +262,7 @@ export const RegisterPage = () => {
               type="submit"
               disabled={loading}
               aria-label="Complete Registration"
-              className="w-full py-2.5 sm:py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 transition-all flex items-center justify-center gap-2 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 active:scale-[0.99] mt-2"
+              className="w-full py-2.5 sm:py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold text-sm shadow-md shadow-indigo-600/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 active:scale-[0.99] mt-2 cursor-pointer"
             >
               {loading ? (
                 <>
@@ -279,11 +279,11 @@ export const RegisterPage = () => {
           </form>
 
           {/* Footer Link */}
-          <p className="text-center text-xs text-slate-400">
+          <p className="text-center text-xs text-slate-500 dark:text-slate-400">
             Already registered?{' '}
             <Link
               to="/login"
-              className="text-indigo-400 font-semibold hover:text-indigo-300 transition-colors focus:outline-none focus:underline"
+              className="text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors focus:outline-none focus:underline"
             >
               Sign in to your account
             </Link>
@@ -292,41 +292,41 @@ export const RegisterPage = () => {
       </div>
 
       {/* Right Visual Brand Column */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-purple-950/40 via-indigo-950/60 to-[#070A11] p-8 xl:p-12 relative overflow-hidden items-center justify-center border-l border-slate-800/80">
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-purple-50/80 via-indigo-50/50 to-slate-100 dark:from-purple-950/40 dark:via-indigo-950/60 dark:to-[#070A11] p-8 xl:p-12 relative overflow-hidden items-center justify-center border-l border-slate-200 dark:border-slate-800/80 transition-colors">
         {/* Ambient Glows */}
         <div className="absolute top-1/4 -right-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-lg space-y-6 relative z-10">
-          <div className="w-14 h-14 rounded-2xl bg-indigo-600/30 border border-indigo-500/30 text-indigo-400 flex items-center justify-center shadow-lg">
+          <div className="w-14 h-14 rounded-2xl bg-indigo-50 dark:bg-indigo-600/30 border border-indigo-200 dark:border-indigo-500/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shadow-md">
             <Bot className="w-7 h-7" />
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-2xl xl:text-3xl font-extrabold text-white tracking-tight leading-tight">
+            <h2 className="text-2xl xl:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
               Next-Gen Customer Support Starts Here
             </h2>
-            <p className="text-slate-300 text-sm leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
               Gain immediate access to R Corporation’s self-learning AI Support Assistant, RAG vector search, and integrated multi-role ticketing.
             </p>
           </div>
 
-          <div className="space-y-3.5 pt-4 border-t border-slate-800/80 text-sm text-slate-300">
+          <div className="space-y-3.5 pt-4 border-t border-slate-200 dark:border-slate-800/80 text-sm text-slate-700 dark:text-slate-300">
             <div className="flex items-center gap-3">
-              <div className="w-5 h-5 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <div className="w-5 h-5 rounded-full bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               </div>
               <span>Full compliance with R Corporation SLA guidelines</span>
             </div>
             <div className="flex items-center gap-3">
-              <div className="w-5 h-5 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <div className="w-5 h-5 rounded-full bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               </div>
               <span>Automatic sentiment telemetry & priority escalation</span>
             </div>
             <div className="flex items-center gap-3">
-              <div className="w-5 h-5 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <div className="w-5 h-5 rounded-full bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               </div>
               <span>Instant knowledge-base vectorization and grounding</span>
             </div>

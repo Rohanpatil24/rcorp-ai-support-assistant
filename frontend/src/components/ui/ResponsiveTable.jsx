@@ -30,9 +30,9 @@ export const ResponsiveTable = ({
       )}
 
       {/* Desktop & Tablet Table with Horizontal Scroll Overflow Container */}
-      <div className={`${renderMobileCard ? 'hidden md:block' : 'block'} w-full overflow-x-auto rounded-2xl border border-slate-800 bg-[#111827]/40 backdrop-blur-xl shadow-xl`}>
-        <table className="w-full text-left text-xs sm:text-sm text-slate-300">
-          <thead className="border-b border-slate-800 bg-slate-900/80 text-[11px] font-semibold text-slate-400 uppercase tracking-wider sticky top-0 z-10">
+      <div className={`${renderMobileCard ? 'hidden md:block' : 'block'} w-full overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111827]/40 backdrop-blur-xl shadow-sm dark:shadow-xl`}>
+        <table className="w-full text-left text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+          <thead className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider sticky top-0 z-10">
             <tr>
               {columns.map((col, idx) => (
                 <th
@@ -44,7 +44,7 @@ export const ResponsiveTable = ({
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/60 font-sans">
+          <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 font-sans">
             {data.length === 0 ? (
               <tr>
                 <td colSpan={columns.length} className="py-12 text-center text-slate-400">
@@ -55,7 +55,7 @@ export const ResponsiveTable = ({
               data.map((item, rowIdx) => (
                 <tr
                   key={keyExtractor(item) || rowIdx}
-                  className="hover:bg-indigo-600/[0.04] transition-colors"
+                  className="hover:bg-slate-50 dark:hover:bg-indigo-600/[0.04] transition-colors"
                 >
                   {columns.map((col, colIdx) => (
                     <td
@@ -74,26 +74,26 @@ export const ResponsiveTable = ({
 
       {/* Responsive Pagination */}
       {pagination && (
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400 px-2">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400 px-2">
           <span>
-            Showing <strong className="text-white">{pagination.from || 1}</strong> to <strong className="text-white">{pagination.to || data.length}</strong> of <strong className="text-white">{pagination.total || data.length}</strong> results
+            Showing <strong className="text-slate-900 dark:text-white">{pagination.from || 1}</strong> to <strong className="text-slate-900 dark:text-white">{pagination.to || data.length}</strong> of <strong className="text-slate-900 dark:text-white">{pagination.total || data.length}</strong> results
           </span>
           <div className="flex items-center gap-1.5">
             <button
               disabled={pagination.currentPage <= 1}
               onClick={pagination.onPrev}
-              className="p-1.5 rounded-lg border border-slate-800 hover:bg-slate-800 text-slate-300 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              className="p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               aria-label="Previous page"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <span className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 font-semibold text-white">
+            <span className="px-3 py-1 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-semibold text-slate-900 dark:text-white">
               {pagination.currentPage || 1}
             </span>
             <button
               disabled={pagination.currentPage >= pagination.totalPages}
               onClick={pagination.onNext}
-              className="p-1.5 rounded-lg border border-slate-800 hover:bg-slate-800 text-slate-300 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              className="p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               aria-label="Next page"
             >
               <ChevronRight className="w-4 h-4" />
